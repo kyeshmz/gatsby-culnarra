@@ -27,6 +27,39 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-styled-jsx`,
+      options: {
+        jsxPlugins: ["styled-jsx-plugin-sass"],
+      },
+    },
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        baseUrl: "wordpress.cul-narra.jp",
+        protocol: "https",
+        restApiRoutePrefix: "wp-json",
+        hostingWPCOM: false,
+        useACF: true,
+        // Set cookies that should be send with requests to WordPress as key value pairs
+        cookies: {},
+        // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
+        // It can help you debug specific API Endpoints problems.
+        verboseOutput: true,
+        // Set how many pages are retrieved per API request.
+        perPage: 100,
+      },
+      plugins:[
+        {
+          resolve: "gatsby-wordpress-inline-images",
+          options:
+          {
+            baseUrl: "wordpress.cul-narra.jp",
+            protocol: "https",
+          }
+        }
+      ]
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
